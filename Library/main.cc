@@ -15,7 +15,7 @@ public:
 Book *Lib = nullptr;
 
 
-int Search(Book Arr[] = Lib, string Name="ABC")
+int Search(Book Arr[], string Name)
 {
     for(int i = 0 ; i < num ; i++)
     {
