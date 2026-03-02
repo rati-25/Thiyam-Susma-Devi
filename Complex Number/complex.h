@@ -1,6 +1,6 @@
 #ifndef COMPLEX_H
 #define COMPLEX_H
 
-struct  Complex;
+typedef struct  Complex;
 
 #endif
