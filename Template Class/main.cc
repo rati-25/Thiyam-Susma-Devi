@@ -19,9 +19,9 @@ public:
 
 int main()
 {
-    IDCard<int> student(24103007);
-    IDCard<string> faculty("fac1234");
-    IDCard<string> staff("STA123456");
+    IDCard<int> student(250103);
+    IDCard<string> faculty("FACULTY876");
+    IDCard<string> staff("sta65876");
     cout << "Faculty ID: " << faculty.showID() << endl;
     cout << "Staff ID: " << staff.showID() << endl;
     cout << "Student " << student.showID() << endl;

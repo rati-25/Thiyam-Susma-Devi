@@ -44,7 +44,7 @@ int main()
     double a,b,c;
     cout << "enter the marks of the three subjects : " ;
     cin >> a >> b >> c;
-    Student Rati(a,b,c);
-    Rati.display();
+    Student Stud(a,b,c);
+    Stud.display();
     return 0;
 }
