@@ -4,19 +4,30 @@
 #include <vector>
 using namespace std;
 
+vector<Dish> starters;
+vector<Dish> mainCourses;
+vector<Dish> desserts;
+vector<Dish> sideItems;
+vector<Drink> drinks;
+
+
 class Dish
 {
 protected:
     const string dishName;
     double dishPrice;
-    const string dishType;
+    const string dishType, dishCourse;
 public:
-    Dish(string N = "not assigned", double P = 0.00): dishName(N), dishPrice(P){}
+    Dish(string N = "not assigned", double P = 0.00, string T = "NON VEG", string C = "starter" );
     string getDishType();
     double getDishPrice();
     string getDishName();
+    string getDishCourse();
     void setDishPrice(double P);
+    void showDishInfo();
 };
+
+
 class Drink
 {
 protected:
@@ -28,14 +39,23 @@ public:
     string getDrinkName();
     void setDrinkPrice(double P);
 };
+
+
 class Cuisine 
 {
 protected:
+    const vector<Dish>::iterator firstVeg;
+    int countDishes;
+    int countVegDishes;
+    int countNonVegDishes;
     string cuisineName;
     vector<Dish> menu;
 public:
+    Cuisine();
     void addDish(Dish D);
     void removeDish(Dish D);
     void showMenu();
+    void showVegMenu();
+    void showNonVegMenu();
 };
 #endif
