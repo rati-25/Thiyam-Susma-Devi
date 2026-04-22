@@ -3,14 +3,7 @@
 using namespace std;
 
 //function for dish class
-Dish::Dish(string N = "not assigned", double P = 0.00, string T = "NON VEG", string C = "starter" ):dishName(N), dishPrice(P), dishType(T), dishCourse(C)
-{
-    if(C == "starter") starters.push_back(*this);
-    else if(C == "main course") mainCourses.push_back(*this);
-    else if(C == "desserts") desserts.push_back(*this);
-    else desserts.push_back(*this);
-    cout << "successfully added " << N << " as an " << C << endl;
-}
+Dish::Dish(string N = "not assigned", double P = 0.00):dishName(N), dishPrice(P){}
 double Dish::getDishPrice()
 {
     return this->dishPrice;
@@ -18,14 +11,6 @@ double Dish::getDishPrice()
 string Dish::getDishName()
 {
     return this->dishName;
-}
-string Dish::getDishType()
-{
-    return this->dishType;
-}
-string Dish::getDishCourse()
-{
-    return this->dishCourse;
 }
 void Dish::setDishPrice(double P)
 {
