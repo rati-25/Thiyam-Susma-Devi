@@ -4,12 +4,6 @@
 #include <vector>
 using namespace std;
 
-vector<Dish> starters;
-vector<Dish> mainCourses;
-vector<Dish> desserts;
-vector<Dish> sideItems;
-vector<Drink> drinks;
-
 class Dish
 {
 protected:
@@ -21,20 +15,7 @@ public:
     double getDishPrice();
     string getDishName();
     void setDishPrice(double P);
-    void showDishInfo();
-};
-
-class Drink
-{
-protected:
-    const string drinkName;
-    double drinkPrice;
-
-public:
-    Drink(string N = "not assigned", double P = 0.00) : drinkName(N), drinkPrice(P) {}
-    double getDrinkPrice();
-    string getDrinkName();
-    void setDrinkPrice(double P);
+    virtual void showDishInfo();
 };
 
 class Cuisine
@@ -56,33 +37,106 @@ public:
     void showNonVegMenu();
 };
 
-
 class starter : public Dish
 {
 protected:
     const string dishCourse;
+
+public:
+    starter(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
 };
 class mainCourse : public Dish
 {
 protected:
     const string dishCourse;
+
+public:
+    mainCourse(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
 };
 class dessert : public Dish
 {
 protected:
     const string dishCourse;
-};
 
+public:
+    dessert(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
+};
 
 class nonveg : public Dish
 {
-protected :
+protected:
     const string dishType;
+
+public:
+    nonveg(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
 };
 class veg : public Dish
 {
-protected :
+protected:
+    veg(string N = "not assigned", double P = 0.00);
     const string dishType;
+
+public:
+    void showDishInfo();
+};
+class sweet : public Dish
+{
+protected:
+    const string dishType;
+
+public:
+    sweet(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
+};
+class sugarFree : public Dish
+{
+protected:
+    const string dishType;
+
+public:
+    sugarFree(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
+};
+
+class nonvegStarter : virtual public nonveg, virtual public starter
+{
+public:
+    nonvegStarter(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
+};
+class nonvegMainCourse : virtual public nonveg, virtual public mainCourse
+{
+public:
+    nonvegMainCourse(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
+};
+class vegStarter : virtual public veg, virtual public starter
+{
+public:
+    vegStarter(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
+};
+class vegMainCourse : virtual public veg, virtual public mainCourse
+{
+public:
+    vegMainCourse(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
+};
+class sweetDessert : virtual public sweet, virtual public dessert
+{
+public:
+    sweetDessert(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
+};
+class sugarFreeDessert : virtual public sugarFree, virtual public dessert
+{
+public:
+    sugarFreeDessert(string N = "not assigned", double P = 0.00);
+    void showDishInfo();
 };
 
 #endif
