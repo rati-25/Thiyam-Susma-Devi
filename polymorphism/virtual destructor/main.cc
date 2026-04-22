@@ -10,7 +10,7 @@ public:
         IPTR = new int[n];
         cout << "allocated the dynamic integral array\n";
     }
-    ~Shape()
+    virtual ~Shape()
     {
         // delete IPTR;
         cout << "successfully deallocated the dynamic integral array\n";
