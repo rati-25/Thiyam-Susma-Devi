@@ -1,5 +1,5 @@
 #include "classes.h"
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 // function for dish class
@@ -23,49 +23,23 @@ void Dish::showDishInfo()
 }
 
 // functions for cuisine class
-Cuisine::Cuisine() : countDishes(0), countNonVegDishes(0), countVegDishes(0), firstVeg(menu.end()) {}
-void Cuisine::addDish(Dish D)
+Cuisine::Cuisine(string S) : countDishes(0), cuisineName(S) {}
+
+void Cuisine::addDessert(dessert D)
 {
+    dmenu.push_back(D);
 }
-void Cuisine::removeDish(Dish D)
+void Cuisine::addMainCouse(mainCourse M)
 {
+    mmenu.push_back(M);
 }
-void Cuisine::showMenu()
+void Cuisine::addStarter(starter S)
 {
-    if (this->countDishes == 0)
-    {
-        std::cout << "no dishes added for " << this->cuisineName << " cuisine yet\n";
-        return;
-    }
-    std::cout << "-------------------MENU-------------------\n";
-    this->showNonVegMenu();
-    this->showVegMenu();
+    smenu.push_back(S);
 }
-void Cuisine::showVegMenu()
+string Cuisine::getCuisineName()
 {
-    if (this->countVegDishes == 0)
-    {
-        std::cout << "no veg dishes\n";
-        return;
-    }
-    for (int i = 0; i < this->countVegDishes; i++)
-    {
-        ((this->firstVeg) + i)->showDishInfo();
-    }
-    return;
-}
-void Cuisine::showNonVegMenu()
-{
-    if (this->countNonVegDishes == 0)
-    {
-        std::cout << "no non-veg dishes\n";
-        return;
-    }
-    for (auto it = menu.begin(); it < this->firstVeg; it++)
-    {
-        it->showDishInfo();
-    }
-    return;
+    return this->cuisineName;
 }
 
 // course class functions
@@ -114,39 +88,79 @@ void sugarFree::showDishInfo()
     std::cout << "Type  : " << this->dishType << endl;
 }
 
-nonvegStarter::nonvegStarter(string N = "not assigned", double P = 0.00) : starter(N, P), nonveg(N, P) {}
+nonvegStarter::nonvegStarter(string N = "not assigned", double P = 0.00) : Dish(N, P), starter(N, P), nonveg(N, P) {}
 void nonvegStarter::showDishInfo()
 {
     starter::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
-vegStarter::vegStarter(string N = "not assigned", double P = 0.00) : starter(N, P), veg(N, P) {}
+vegStarter::vegStarter(string N = "not assigned", double P = 0.00) : Dish(N, P), starter(N, P), veg(N, P) {}
 void vegStarter::showDishInfo()
 {
     starter::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
-nonvegMainCourse::nonvegMainCourse(string N = "not assigned", double P = 0.00) : mainCourse(N, P), nonveg(N, P) {}
+nonvegMainCourse::nonvegMainCourse(string N = "not assigned", double P = 0.00) : Dish(N, P), mainCourse(N, P), nonveg(N, P) {}
 void nonvegMainCourse::showDishInfo()
 {
     mainCourse::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
-vegMainCourse::vegMainCourse(string N = "not assigned", double P = 0.00) : mainCourse(N, P), veg(N, P) {}
+vegMainCourse::vegMainCourse(string N = "not assigned", double P = 0.00) : Dish(N, P), mainCourse(N, P), veg(N, P) {}
 void vegMainCourse::showDishInfo()
 {
     mainCourse::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
-sweetDessert::sweetDessert(string N = "not assigned", double P = 0.00) : dessert(N, P), sweet(N, P) {}
+sweetDessert::sweetDessert(string N = "not assigned", double P = 0.00) : Dish(N, P), dessert(N, P), sweet(N, P) {}
 void sweetDessert::showDishInfo()
 {
     dessert::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
-sugarFreeDessert::sugarFreeDessert(string N = "not assigned", double P = 0.00) : sugarFree(N, P), dessert(N, P) {}
+sugarFreeDessert::sugarFreeDessert(string N = "not assigned", double P = 0.00) : Dish(N, P), sugarFree(N, P), dessert(N, P) {}
 void sugarFreeDessert::showDishInfo()
 {
     dessert::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
+}
+
+Dish* dishpointer = nullptr;
+int input = 0;
+
+void SHOWMENU()
+{
+    if(chart.empty())
+    {
+        cout << "no cuisines added yet. add something to start\n";
+    }
+    else
+    {
+        for(auto it : chart)
+        {
+            it.showMenu();
+        }
+    }
+}
+void inp()
+{
+    cout << "input : ";
+    cin >> input;
+    return;
+}
+
+void showCuisines()
+{
+    if(chart.empty())
+    {
+        cout << "cuisines added yet. add one cuisine to add dish to it\n";
+    }
+    else
+    {
+        for(int cuisineIterator = 0; cuisineIterator < chart.size(); cuisineIterator++)
+        {
+            cout << cuisineIterator + 1 << " " << chart[cuisineIterator].getCuisineName() << '\t';
+        }
+        cout << endl;
+    }
 }

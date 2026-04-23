@@ -18,25 +18,6 @@ public:
     virtual void showDishInfo();
 };
 
-class Cuisine
-{
-protected:
-    const vector<Dish>::iterator firstVeg;
-    int countDishes;
-    int countVegDishes;
-    int countNonVegDishes;
-    string cuisineName;
-    vector<Dish> menu;
-
-public:
-    Cuisine();
-    void addDish(Dish D);
-    void removeDish(Dish D);
-    void showMenu();
-    void showVegMenu();
-    void showNonVegMenu();
-};
-
 class starter : public Dish
 {
 protected:
@@ -102,41 +83,68 @@ public:
     void showDishInfo();
 };
 
-class nonvegStarter : virtual public nonveg, virtual public starter
+class nonvegStarter : virtual Dish, virtual public nonveg, virtual public starter
 {
 public:
     nonvegStarter(string N = "not assigned", double P = 0.00);
     void showDishInfo();
 };
-class nonvegMainCourse : virtual public nonveg, virtual public mainCourse
+class nonvegMainCourse : virtual Dish, virtual public nonveg, virtual public mainCourse
 {
 public:
     nonvegMainCourse(string N = "not assigned", double P = 0.00);
     void showDishInfo();
 };
-class vegStarter : virtual public veg, virtual public starter
+class vegStarter : virtual Dish, virtual public veg, virtual public starter
 {
 public:
     vegStarter(string N = "not assigned", double P = 0.00);
     void showDishInfo();
 };
-class vegMainCourse : virtual public veg, virtual public mainCourse
+class vegMainCourse : virtual Dish, virtual public veg, virtual public mainCourse
 {
 public:
     vegMainCourse(string N = "not assigned", double P = 0.00);
     void showDishInfo();
 };
-class sweetDessert : virtual public sweet, virtual public dessert
+class sweetDessert : virtual Dish, virtual public sweet, virtual public dessert
 {
 public:
     sweetDessert(string N = "not assigned", double P = 0.00);
     void showDishInfo();
 };
-class sugarFreeDessert : virtual public sugarFree, virtual public dessert
+class sugarFreeDessert : virtual Dish, virtual public sugarFree, virtual public dessert
 {
 public:
     sugarFreeDessert(string N = "not assigned", double P = 0.00);
     void showDishInfo();
 };
+
+class Cuisine
+{
+protected:
+    int countDishes;
+    const string cuisineName;
+    vector<starter> smenu;
+    vector<mainCourse> mmenu;
+    vector<dessert> dmenu;
+
+public:
+    Cuisine(string S);
+    string getCuisineName();
+    void addDessert(dessert D);
+    void addMainCouse(mainCourse M);
+    void addStarter(starter S);
+    void showMenu();
+};
+
+
+int input;
+vector<Cuisine> chart;
+int cuisineIterator;
+
+void SHOWMENU();
+void inp();
+void showCuisines();
 
 #endif
