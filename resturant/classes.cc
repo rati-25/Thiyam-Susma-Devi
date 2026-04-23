@@ -3,7 +3,7 @@
 using namespace std;
 
 // function for dish class
-Dish::Dish(string N = "not assigned", double P = 0.00) : dishName(N), dishPrice(P) {}
+Dish::Dish(string N, double P) : dishName(N), dishPrice(P) {}
 double Dish::getDishPrice()
 {
     return this->dishPrice;
@@ -41,11 +41,40 @@ string Cuisine::getCuisineName()
 {
     return this->cuisineName;
 }
+void Cuisine::showMenu()
+{
+    if(smenu.empty() && dmenu.empty() && mmenu.empty())
+    {
+        cout << "nothing in the menu for this cuisine!!!\n";
+        return;
+    }
+    if(!smenu.empty())
+    {
+        for(auto it: smenu)
+        {
+            it.showDishInfo();
+        }
+    }
+    if(!mmenu.empty())
+    {
+        for(auto it: mmenu)
+        {
+            it.showDishInfo();
+        }
+    }
+    if(!dmenu.empty())
+    {
+        for(auto it: dmenu)
+        {
+            it.showDishInfo();
+        }
+    }
+}
 
 // course class functions
-starter::starter(string N = "not assigned", double P = 0.00) : Dish(N, P), dishCourse("starter") {}
-mainCourse::mainCourse(string N = "not assigned", double P = 0.00) : Dish(N, P), dishCourse("main course") {}
-dessert::dessert(string N = "not assigned", double P = 0.00) : Dish(N, P), dishCourse("dessert") {}
+starter::starter(string N, double P) : Dish(N, P), dishCourse("starter") {}
+mainCourse::mainCourse(string N, double P) : Dish(N, P), dishCourse("main course") {}
+dessert::dessert(string N, double P) : Dish(N, P), dishCourse("dessert") {}
 void starter::showDishInfo()
 {
     Dish::showDishInfo();
@@ -62,8 +91,8 @@ void dessert::showDishInfo()
     std::cout << "Course: " << this->dishCourse << endl;
 }
 
-veg::veg(string N = "not assigned", double P = 0.00) : Dish(N, P), dishType("veg") {}
-nonveg::nonveg(string N = "not assigned", double P = 0.00) : Dish(N, P), dishType("nonveg") {}
+veg::veg(string N, double P) : Dish(N, P), dishType("veg") {}
+nonveg::nonveg(string N, double P) : Dish(N, P), dishType("nonveg") {}
 void veg::showDishInfo()
 {
     Dish::showDishInfo();
@@ -75,8 +104,8 @@ void nonveg::showDishInfo()
     std::cout << "Type  : " << this->dishType << endl;
 }
 
-sweet::sweet(string N = "not assigned", double P = 0.00) : Dish(N, P), dishType("sweet") {}
-sugarFree::sugarFree(string N = "not assigned", double P = 0.00) : Dish(N, P), dishType("sugar free") {}
+sweet::sweet(string N, double P) : Dish(N, P), dishType("sweet") {}
+sugarFree::sugarFree(string N, double P) : Dish(N, P), dishType("sugar free") {}
 void sweet::showDishInfo()
 {
     Dish::showDishInfo();
@@ -88,45 +117,46 @@ void sugarFree::showDishInfo()
     std::cout << "Type  : " << this->dishType << endl;
 }
 
-nonvegStarter::nonvegStarter(string N = "not assigned", double P = 0.00) : Dish(N, P), starter(N, P), nonveg(N, P) {}
+nonvegStarter::nonvegStarter(string N, double P) : Dish(N, P), starter(N, P), nonveg(N, P) {}
 void nonvegStarter::showDishInfo()
 {
     starter::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
-vegStarter::vegStarter(string N = "not assigned", double P = 0.00) : Dish(N, P), starter(N, P), veg(N, P) {}
+vegStarter::vegStarter(string N, double P) : Dish(N, P), starter(N, P), veg(N, P) {}
 void vegStarter::showDishInfo()
 {
     starter::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
-nonvegMainCourse::nonvegMainCourse(string N = "not assigned", double P = 0.00) : Dish(N, P), mainCourse(N, P), nonveg(N, P) {}
+nonvegMainCourse::nonvegMainCourse(string N, double P) : Dish(N, P), mainCourse(N, P), nonveg(N, P) {}
 void nonvegMainCourse::showDishInfo()
 {
     mainCourse::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
-vegMainCourse::vegMainCourse(string N = "not assigned", double P = 0.00) : Dish(N, P), mainCourse(N, P), veg(N, P) {}
+vegMainCourse::vegMainCourse(string N, double P) : Dish(N, P), mainCourse(N, P), veg(N, P) {}
 void vegMainCourse::showDishInfo()
 {
     mainCourse::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
-sweetDessert::sweetDessert(string N = "not assigned", double P = 0.00) : Dish(N, P), dessert(N, P), sweet(N, P) {}
+sweetDessert::sweetDessert(string N, double P) : Dish(N, P), dessert(N, P), sweet(N, P) {}
 void sweetDessert::showDishInfo()
 {
     dessert::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
-sugarFreeDessert::sugarFreeDessert(string N = "not assigned", double P = 0.00) : Dish(N, P), sugarFree(N, P), dessert(N, P) {}
+sugarFreeDessert::sugarFreeDessert(string N, double P) : Dish(N, P), sugarFree(N, P), dessert(N, P) {}
 void sugarFreeDessert::showDishInfo()
 {
     dessert::showDishInfo();
     std::cout << "Type  : " << this->dishType << endl;
 }
 
-Dish* dishpointer = nullptr;
 int input = 0;
+vector<Cuisine> chart;
+int cuisineIterator = 0;
 
 void SHOWMENU()
 {

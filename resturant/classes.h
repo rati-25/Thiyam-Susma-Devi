@@ -139,9 +139,9 @@ public:
 };
 
 
-int input;
-vector<Cuisine> chart;
-int cuisineIterator;
+extern int input;
+extern vector<Cuisine> chart;
+extern int cuisineIterator;
 
 void SHOWMENU();
 void inp();
