@@ -5,10 +5,10 @@ using namespace std;
 
 int main()
 {
-    cout << "welcome to the dish management system\n";
+    cout << "--------------------------------------------welcome to the dish management system--------------------------------------------\n";
     while (true)
     {
-        cout << "1 to show cuisines     2 to add dish       0 to exit\n";
+        cout << "\n1 to show menu     2 to add dish    3 to show cuisines    0 to exit\n";
         inp();
         if (input == 0)
             break;
@@ -17,14 +17,17 @@ int main()
         if (input == 2)
         {
             showCuisines();
-            cout << "1 to add a cuisine     2 to add a dish to the existing cuisine\n    0 to exit";
+            cout << "1 to add a cuisine     2 to add a dish to the existing cuisine    0 to exit\n";
             inp();
             if (input == 1)
             {
                 string N;
                 cout << "enter cuisine name : ";
+                cin.ignore();
                 cin >> N;
-                chart.push_back(Cuisine(N));
+                Cuisine C1(N);
+                chart.push_back(C1);
+                cout << "cuisine added to the chart successfully\n";
             }
             if (input == 2)
             {
@@ -40,6 +43,7 @@ int main()
                     inp();
                     string N;
                     double P;
+                    cin.ignore();
                     cout << "name : ";
                     cin >> N;
                     cout << "price :";
@@ -54,6 +58,7 @@ int main()
                         sugarFreeDessert s1(N, P);
                         chart[cuisineIterator].addDessert(s1);
                     }
+                    cout << "added the dessert\n";
                 }
                 else if (input == 2)
                 {
@@ -61,6 +66,7 @@ int main()
                     inp();
                     string N;
                     double P;
+                    cin.ignore();
                     cout << "name : ";
                     cin >> N;
                     cout << "price :";
@@ -75,6 +81,7 @@ int main()
                         nonvegMainCourse s1(N, P);
                         chart[cuisineIterator].addMainCouse(s1);
                     }
+                    cout << "added the main course\n";
                 }
                 else
                 {
@@ -82,6 +89,7 @@ int main()
                     inp();
                     string N;
                     double P;
+                    cin.ignore();
                     cout << "name : ";
                     cin >> N;
                     cout << "price :";
@@ -96,12 +104,17 @@ int main()
                         nonvegStarter s1(N, P);
                         chart[cuisineIterator].addStarter(s1);
                     }
+                    cout << "added the starter\n";
                 }
             }
             if (input == 0)
             {
                 continue;
             }
+        }
+        if (input == 3)
+        {
+            showCuisines();
         }
     }
 }
